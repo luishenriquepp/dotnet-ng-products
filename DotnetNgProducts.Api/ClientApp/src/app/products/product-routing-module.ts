@@ -2,11 +2,12 @@ import { NgModule } from '@angular/core'
 import { Routes, RouterModule } from '@angular/router'
 
 import { ProductFormComponent } from './product-form/product-form.component'
+import { ProductListingComponent } from './product-listing/product-listing.component'
 
 const routes: Routes = [
 	{
 		path: '',
-		component: ProductFormComponent,
+		component: ProductListingComponent,
 	},
 ]
 

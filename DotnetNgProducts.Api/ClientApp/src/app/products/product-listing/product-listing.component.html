@@ -1,0 +1,18 @@
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th scope="col">Id</th>
+			<th scope="col">Name</th>
+			<th scope="col">Price</th>
+			<th scope="col">Action</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr *ngFor="let product of products$ | async">
+			<td>{{ product.Id }}</td>
+			<td>{{ product.Name }}</td>
+			<td>{{ product.Price | currency }}</td>
+			<td>Update | Delete</td>
+		</tr>
+	</tbody>
+</table>
