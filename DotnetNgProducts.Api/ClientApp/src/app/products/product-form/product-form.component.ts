@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core'
 import { FormControl, FormGroup, Validators } from '@angular/forms'
+import { Router } from '@angular/router'
 
 @Component({
 	selector: 'app-product-form',
@@ -10,7 +11,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms'
 export class ProductFormComponent implements OnInit {
 	form: FormGroup
 
-	constructor() {}
+	constructor(private router: Router) {}
 
 	ngOnInit() {
 		this.form = new FormGroup({
@@ -19,7 +20,9 @@ export class ProductFormComponent implements OnInit {
 		})
 	}
 
-	onSubmit(): void {}
+	onSubmit(): void {
+		this.router.navigate(['products'])
+	}
 
 	get name() {
 		return this.form.get('name')
