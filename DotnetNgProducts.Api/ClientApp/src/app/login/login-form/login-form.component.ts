@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core'
 import { FormGroup, FormControl, Validators } from '@angular/forms'
+import { Router } from '@angular/router'
 import { LoginService } from '../services/login.service'
 
 @Component({
@@ -11,7 +12,7 @@ import { LoginService } from '../services/login.service'
 export class LoginFormComponent implements OnInit {
 	form: FormGroup
 
-	constructor(private loginService: LoginService) {}
+	constructor(private loginService: LoginService, private router: Router) {}
 
 	ngOnInit(): void {
 		this.form = new FormGroup({
@@ -22,7 +23,7 @@ export class LoginFormComponent implements OnInit {
 
 	onSubmit(): void {
 		this.loginService.login(this.username.value, this.password.value).subscribe((res) => {
-			console.log(res)
+			this.router.navigate(['/products'])
 		})
 	}
 
