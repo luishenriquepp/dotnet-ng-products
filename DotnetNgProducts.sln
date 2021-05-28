@@ -7,6 +7,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotnetNgProducts.Api", "Dot
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotnetNgProducts.Models", "DotnetNgProducts.Models\DotnetNgProducts.Models.csproj", "{AB1F960A-9277-4B2B-A670-DAB14C84BAD4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotnetNgProducts.Data", "DotnetNgProducts.Data\DotnetNgProducts.Data.csproj", "{E2E1EDEA-C1BD-4ED8-9754-09A990BF8DFC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotnetNgProducts.Migrations", "DotnetNgProducts.Migrations\DotnetNgProducts.Migrations.csproj", "{6EE02BC8-4A03-429E-8AEA-EB6CA4561326}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{AB1F960A-9277-4B2B-A670-DAB14C84BAD4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AB1F960A-9277-4B2B-A670-DAB14C84BAD4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AB1F960A-9277-4B2B-A670-DAB14C84BAD4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E2E1EDEA-C1BD-4ED8-9754-09A990BF8DFC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E2E1EDEA-C1BD-4ED8-9754-09A990BF8DFC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E2E1EDEA-C1BD-4ED8-9754-09A990BF8DFC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E2E1EDEA-C1BD-4ED8-9754-09A990BF8DFC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6EE02BC8-4A03-429E-8AEA-EB6CA4561326}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6EE02BC8-4A03-429E-8AEA-EB6CA4561326}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6EE02BC8-4A03-429E-8AEA-EB6CA4561326}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6EE02BC8-4A03-429E-8AEA-EB6CA4561326}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
