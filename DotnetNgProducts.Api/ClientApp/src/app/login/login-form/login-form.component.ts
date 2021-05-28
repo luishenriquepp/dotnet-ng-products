@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core'
 import { FormGroup, FormControl, Validators } from '@angular/forms'
+import { LoginService } from '../services/login.service'
 
 @Component({
 	selector: 'app-login-form',
@@ -10,6 +11,8 @@ import { FormGroup, FormControl, Validators } from '@angular/forms'
 export class LoginFormComponent implements OnInit {
 	form: FormGroup
 
+	constructor(private loginService: LoginService) {}
+
 	ngOnInit(): void {
 		this.form = new FormGroup({
 			username: new FormControl('', [Validators.required, Validators.minLength(6)]),
@@ -17,7 +20,11 @@ export class LoginFormComponent implements OnInit {
 		})
 	}
 
-	onSubmit(): void {}
+	onSubmit(): void {
+		this.loginService.login(this.username.value, this.password.value).subscribe((res) => {
+			console.log(res)
+		})
+	}
 
 	get username() {
 		return this.form.get('username')
