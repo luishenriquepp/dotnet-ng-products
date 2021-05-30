@@ -9,9 +9,9 @@
 	</thead>
 	<tbody>
 		<tr *ngFor="let product of products$ | async">
-			<td>{{ product.Id }}</td>
-			<td>{{ product.Name }}</td>
-			<td>{{ product.Price | currency }}</td>
+			<td>{{ product.id }}</td>
+			<td>{{ product.name }}</td>
+			<td>{{ product.price | currency }}</td>
 			<td>Update | Delete</td>
 		</tr>
 	</tbody>
