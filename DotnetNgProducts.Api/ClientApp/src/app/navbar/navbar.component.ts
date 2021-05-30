@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core'
+import { LocalStorageService } from '../services/local-storage.service'
 
 @Component({
 	selector: 'app-navbar',
@@ -6,4 +7,10 @@ import { ChangeDetectionStrategy, Component } from '@angular/core'
 	styleUrls: ['./navbar.component.css'],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class NavbarComponent {}
+export class NavbarComponent {
+	constructor(private localStorageService: LocalStorageService) {}
+
+	get isLogged(): boolean {
+		return this.localStorageService.isLogged()
+	}
+}

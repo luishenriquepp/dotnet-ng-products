@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core'
 import { FormGroup, FormControl, Validators } from '@angular/forms'
 import { Router } from '@angular/router'
+import { LocalStorageService } from 'src/app/services/local-storage.service'
 import { LoginService } from '../services/login.service'
 
 @Component({
@@ -12,7 +13,11 @@ import { LoginService } from '../services/login.service'
 export class LoginFormComponent implements OnInit {
 	form: FormGroup
 
-	constructor(private loginService: LoginService, private router: Router) {}
+	constructor(
+		private loginService: LoginService,
+		private router: Router,
+		private localStorageService: LocalStorageService
+	) {}
 
 	ngOnInit(): void {
 		this.form = new FormGroup({
@@ -23,6 +28,7 @@ export class LoginFormComponent implements OnInit {
 
 	onSubmit(): void {
 		this.loginService.login(this.username.value, this.password.value).subscribe((res) => {
+			this.localStorageService.addAuth('1234')
 			this.router.navigate(['/products'])
 		})
 	}
