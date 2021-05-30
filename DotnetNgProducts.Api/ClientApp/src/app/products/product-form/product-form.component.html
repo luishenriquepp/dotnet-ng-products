@@ -1,21 +1,23 @@
-<div class="row mb-3">
-	<button type="submit" class="btn btn-primary" (click)="goToCreateProduct()">Create</button>
-</div>
-<table class="table table-striped">
-	<thead>
-		<tr>
-			<th scope="col">Id</th>
-			<th scope="col">Name</th>
-			<th scope="col">Price</th>
-			<th scope="col">Action</th>
-		</tr>
-	</thead>
-	<tbody>
-		<tr *ngFor="let product of products$ | async">
-			<td>{{ product.Id }}</td>
-			<td>{{ product.Name }}</td>
-			<td>{{ product.Price | currency }}</td>
-			<td>Update | Delete</td>
-		</tr>
-	</tbody>
-</table>
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+	<div class="form-group">
+		<label for="name">Name</label>
+		<input
+			type="text"
+			class="form-control"
+			id="name"
+			[class.is-invalid]="!name.pristine && name.invalid"
+			formControlName="name"
+		/>
+	</div>
+	<div class="form-group">
+		<label for="price">Price</label>
+		<input
+			type="number"
+			class="form-control"
+			id="price"
+			[class.is-invalid]="!price.pristine && price.invalid"
+			formControlName="price"
+		/>
+	</div>
+	<button [disabled]="form.invalid" type="submit" class="btn btn-primary">Create</button>
+</form>
