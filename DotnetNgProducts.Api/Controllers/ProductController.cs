@@ -1,4 +1,5 @@
 ﻿using DotnetNgProducts.Business.Operations;
+using DotnetNgProducts.Business.Queries;
 using DotnetNgProducts.Business.Queries.GetAllProducts;
 using DotnetNgProducts.Models;
 using MediatR;
@@ -28,6 +29,12 @@ namespace DotnetNgProducts.Api.Controllers
         public async Task<IActionResult> Add(Product product)
         {
             return Ok(await _mediator.Send(new SaveProductRequest(product)));
+        }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> Get(int id)
+        {
+            return Ok(await _mediator.Send(new GetProductByIdRequest(id)));
         }
     }
 }

@@ -27,5 +27,10 @@ namespace DotnetNgProducts.Data
 
             return added.Entity;
         }
+
+        async Task<Product> IProductRepository.GetAsync(int id)
+        {
+            return await _dbContext.Products.FindAsync(id);
+        }
     }
 }

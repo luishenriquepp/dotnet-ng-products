@@ -15,5 +15,10 @@ namespace DotnetNgProducts.Data
         /// Add a new product into the database
         /// </summary>
         Task<Product> AddAsync(Product entity);
+
+        /// <summary>
+        /// Fetch a specific product by it's unique id
+        /// </summary>
+        Task<Product> GetAsync(int id);
     }
 }
