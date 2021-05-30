@@ -1,4 +1,6 @@
-﻿using DotnetNgProducts.Business.Queries.GetAllProducts;
+﻿using DotnetNgProducts.Business.Operations;
+using DotnetNgProducts.Business.Queries.GetAllProducts;
+using DotnetNgProducts.Models;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
@@ -20,6 +22,12 @@ namespace DotnetNgProducts.Api.Controllers
         public async Task<IActionResult> GetAll()
         {
             return Ok(await _mediator.Send(new GetAllProductsRequest()));
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Add(Product product)
+        {
+            return Ok(await _mediator.Send(new SaveProductRequest(product)));
         }
     }
 }

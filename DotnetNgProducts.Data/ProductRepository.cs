@@ -18,5 +18,14 @@ namespace DotnetNgProducts.Data
         {
             return await _dbContext.Products.ToListAsync();
         }
+
+        async Task<Product> IProductRepository.AddAsync(Product entity)
+        {
+            var added = await _dbContext.Products.AddAsync(entity);
+
+            await _dbContext.SaveChangesAsync();
+
+            return added.Entity;
+        }
     }
 }
