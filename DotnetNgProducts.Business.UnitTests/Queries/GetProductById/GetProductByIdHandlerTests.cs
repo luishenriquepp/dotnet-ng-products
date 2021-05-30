@@ -1,5 +1,4 @@
-﻿using DotnetNgProducts.Business.Queries;
-using DotnetNgProducts.Data;
+﻿using DotnetNgProducts.Data;
 using DotnetNgProducts.Models;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -8,7 +7,7 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace DotnetNgProducts.Business.UnitTests.Queries.GetProductById
+namespace DotnetNgProducts.Business.Queries
 {
     [TestClass]
     public class GetProductByIdHandlerTests
