@@ -18,4 +18,8 @@ export class ProductService {
 	public add(entity: Product): Observable<Product[]> {
 		return this.http.post<Product[]>(this.url, entity)
 	}
+
+	public getById(id: number): Observable<Product> {
+		return this.http.get<Product>(`${this.url}/${id}`)
+	}
 }
