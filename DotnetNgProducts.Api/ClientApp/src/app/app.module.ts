@@ -8,6 +8,7 @@ import { AppComponent } from './app.component'
 import { NavbarComponent } from './navbar/navbar.component'
 import { LoginModule } from './login/login.module'
 import { ProductsModule } from './products/products.module'
+import { AuthGuard } from './guards/auth.guard'
 
 @NgModule({
 	declarations: [AppComponent, NavbarComponent],
@@ -19,7 +20,7 @@ import { ProductsModule } from './products/products.module'
 		LoginModule,
 		ProductsModule,
 	],
-	providers: [],
+	providers: [AuthGuard],
 	bootstrap: [AppComponent],
 })
 export class AppModule {}
