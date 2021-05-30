@@ -1,5 +1,5 @@
 using DotnetNgProducts.Api.Validators;
-using DotnetNgProducts.Business.Queries.GetAllProducts;
+using DotnetNgProducts.Business.Queries;
 using DotnetNgProducts.Data;
 using FluentValidation.AspNetCore;
 using MediatR;

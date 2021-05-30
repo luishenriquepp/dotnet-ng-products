@@ -2,7 +2,7 @@
 using MediatR;
 using System.Collections.Generic;
 
-namespace DotnetNgProducts.Business.Queries.GetAllProducts
+namespace DotnetNgProducts.Business.Queries
 {
     public sealed class GetAllProductsRequest : IRequest<IEnumerable<Product>>
     {

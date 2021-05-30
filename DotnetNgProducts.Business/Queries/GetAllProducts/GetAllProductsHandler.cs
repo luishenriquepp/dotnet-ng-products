@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace DotnetNgProducts.Business.Queries.GetAllProducts
+namespace DotnetNgProducts.Business.Queries
 {
     public sealed class GetAllProductsHandler : IRequestHandler<GetAllProductsRequest, IEnumerable<Product>>
     {

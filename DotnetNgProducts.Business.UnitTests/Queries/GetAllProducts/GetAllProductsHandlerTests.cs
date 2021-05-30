@@ -1,5 +1,4 @@
-﻿using DotnetNgProducts.Business.Queries.GetAllProducts;
-using DotnetNgProducts.Data;
+﻿using DotnetNgProducts.Data;
 using DotnetNgProducts.Models;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;

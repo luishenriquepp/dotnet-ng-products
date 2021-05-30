@@ -1,6 +1,5 @@
 ﻿using DotnetNgProducts.Business.Operations;
 using DotnetNgProducts.Business.Queries;
-using DotnetNgProducts.Business.Queries.GetAllProducts;
 using DotnetNgProducts.Models;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
