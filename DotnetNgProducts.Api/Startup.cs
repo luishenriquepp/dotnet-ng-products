@@ -1,4 +1,6 @@
+using DotnetNgProducts.Business.Queries.GetAllProducts;
 using DotnetNgProducts.Data;
+using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
@@ -27,12 +29,16 @@ namespace DotnetNgProducts.Api
                         Configuration.GetConnectionString("DefaultConnection"),
                         x => x.MigrationsAssembly("DotnetNgProducts.Migrations")));
 
+            services.AddMediatR(typeof(GetAllProductsRequest).Assembly);
+
             services.AddControllersWithViews();
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
             {
                 configuration.RootPath = "ClientApp/dist";
             });
+
+            services.AddTransient<IProductRepository, ProductRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
