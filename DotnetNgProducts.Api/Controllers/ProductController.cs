@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
 namespace DotnetNgProducts.Api.Controllers
-{    
+{
     [Route("api/[controller]")]
     [ApiController]
     public class ProductController : ControllerBase
@@ -34,6 +34,12 @@ namespace DotnetNgProducts.Api.Controllers
         public async Task<IActionResult> Get(int id)
         {
             return Ok(await _mediator.Send(new GetProductByIdRequest(id)));
+        }
+
+        [HttpDelete("{Id}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            return Ok(await _mediator.Send(new DeleteProductRequest(id)));
         }
     }
 }

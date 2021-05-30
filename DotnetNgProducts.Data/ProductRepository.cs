@@ -32,5 +32,14 @@ namespace DotnetNgProducts.Data
         {
             return await _dbContext.Products.FindAsync(id);
         }
+
+        async Task IProductRepository.DeleteAsync(int id)
+        {
+            var entityToDelete = new Product { Id = id };
+            
+            _dbContext.Products.Remove(entityToDelete);
+            
+            await _dbContext.SaveChangesAsync();
+        }
     }
 }
