@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core'
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core'
 import { LocalStorageService } from '../services/local-storage.service'
 
 @Component({
@@ -7,8 +7,14 @@ import { LocalStorageService } from '../services/local-storage.service'
 	styleUrls: ['./navbar.component.css'],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class NavbarComponent {
-	constructor(private localStorageService: LocalStorageService) {}
+export class NavbarComponent implements OnInit {
+	constructor(private localStorageService: LocalStorageService, private changeDetector: ChangeDetectorRef) {}
+
+	ngOnInit(): void {
+		this.localStorageService.getLoginStatus().subscribe((login) => {
+			this.changeDetector.detectChanges()
+		})
+	}
 
 	get isLogged(): boolean {
 		return this.localStorageService.isLogged()
