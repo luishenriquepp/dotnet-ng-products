@@ -15,7 +15,10 @@
 			<td>{{ product.id }}</td>
 			<td>{{ product.name }}</td>
 			<td>{{ product.price | currency }}</td>
-			<td><a [routerLink]="['/products/edit', product.id]"> Update </a> | Delete</td>
+			<td>
+				<a [routerLink]="['/products/edit', product.id]"> Update</a> |
+				<a class="link" (click)="remove(product.id)">Delete</a>
+			</td>
 		</tr>
 	</tbody>
 </table>

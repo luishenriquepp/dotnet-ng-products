@@ -22,4 +22,9 @@ export class ProductListingComponent implements OnInit {
 	goToCreateProduct() {
 		this.router.navigate(['create'], { relativeTo: this.route })
 	}
+
+	remove(id: number) {
+		this.productService.delete(id).subscribe(() => {})
+		this.ngOnInit()
+	}
 }
