@@ -11,8 +11,9 @@ import { ProductService } from '../services/product.service'
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProductFormComponent implements OnInit {
-	form: FormGroup
 	private currentId: number
+	form: FormGroup
+	pictureBase64: string
 
 	constructor(
 		private router: Router,
@@ -28,6 +29,7 @@ export class ProductFormComponent implements OnInit {
 		if (productId) {
 			this.currentId = parseInt(productId)
 			this.productService.getById(this.currentId).subscribe((p) => {
+				this.pictureBase64 = p.base64Picture
 				this.form = this.buildForm(p.name, p.price)
 				this.changeDetector.detectChanges()
 			})
@@ -35,12 +37,13 @@ export class ProductFormComponent implements OnInit {
 	}
 
 	onSubmit(): void {
-		if (this.form.invalid) return
+		if (this.isFormInvalid) return
 
 		const product = {
 			id: this.currentId,
 			name: this.name.value,
 			price: this.price.value,
+			base64Picture: this.pictureBase64,
 		} as Product
 
 		if (this.isUpdate) {
@@ -58,6 +61,23 @@ export class ProductFormComponent implements OnInit {
 		})
 	}
 
+	selectFile(event) {
+		var files = event.target.files
+		var file = files[0] as File
+
+		if (files && file) {
+			var reader = new FileReader()
+			reader.onload = this.handleFile.bind(this)
+			reader.readAsBinaryString(file)
+		}
+	}
+
+	handleFile(event) {
+		var binaryString = event.target.result
+		this.pictureBase64 = btoa(binaryString)
+		this.changeDetector.detectChanges()
+	}
+
 	get name() {
 		return this.form.get('name')
 	}
@@ -68,5 +88,13 @@ export class ProductFormComponent implements OnInit {
 
 	get isUpdate(): boolean {
 		return this.currentId > 0
+	}
+
+	get addPictureText(): string {
+		return this.pictureBase64 ? 'update' : 'add'
+	}
+
+	get isFormInvalid(): boolean {
+		return this.form.invalid || !this.pictureBase64
 	}
 }
