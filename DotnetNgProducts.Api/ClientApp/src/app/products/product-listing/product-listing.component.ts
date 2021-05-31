@@ -1,6 +1,6 @@
-import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core'
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core'
 import { ActivatedRoute, Router } from '@angular/router'
-import { Observable } from 'rxjs'
+import { NgxUiLoaderService } from 'ngx-ui-loader'
 import { Product } from '../models/product.model'
 import { ProductService } from '../services/product.service'
 
@@ -11,12 +11,23 @@ import { ProductService } from '../services/product.service'
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProductListingComponent implements OnInit {
-	products$: Observable<Product[]>
+	products: Product[]
 
-	constructor(private productService: ProductService, private router: Router, private route: ActivatedRoute) {}
+	constructor(
+		private productService: ProductService,
+		private router: Router,
+		private route: ActivatedRoute,
+		private ngxLoader: NgxUiLoaderService,
+		private changeDetector: ChangeDetectorRef
+	) {}
 
 	ngOnInit() {
-		this.products$ = this.productService.get()
+		this.ngxLoader.start()
+		this.productService.get().subscribe((products) => {
+			this.products = products
+			this.ngxLoader.stop()
+			this.changeDetector.detectChanges()
+		})
 	}
 
 	goToCreateProduct() {
@@ -24,7 +35,10 @@ export class ProductListingComponent implements OnInit {
 	}
 
 	remove(id: number) {
-		this.productService.delete(id).subscribe(() => {})
+		this.ngxLoader.start()
+		this.productService.delete(id).subscribe(() => {
+			this.ngxLoader.stop()
+		})
 		this.ngOnInit()
 	}
 }

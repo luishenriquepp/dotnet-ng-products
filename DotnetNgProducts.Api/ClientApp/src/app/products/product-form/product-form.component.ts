@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core'
 import { FormControl, FormGroup, Validators } from '@angular/forms'
 import { ActivatedRoute, Router } from '@angular/router'
+import { NgxUiLoaderService } from 'ngx-ui-loader'
 import { Product } from '../models/product.model'
 import { ProductService } from '../services/product.service'
 
@@ -19,7 +20,8 @@ export class ProductFormComponent implements OnInit {
 		private router: Router,
 		private productService: ProductService,
 		private route: ActivatedRoute,
-		private changeDetector: ChangeDetectorRef
+		private changeDetector: ChangeDetectorRef,
+		private ngxLoader: NgxUiLoaderService
 	) {}
 
 	ngOnInit() {
@@ -27,10 +29,12 @@ export class ProductFormComponent implements OnInit {
 
 		const productId = this.route.snapshot.paramMap.get('id')
 		if (productId) {
+			this.ngxLoader.start()
 			this.currentId = parseInt(productId)
 			this.productService.getById(this.currentId).subscribe((p) => {
 				this.pictureBase64 = p.base64Picture
 				this.form = this.buildForm(p.name, p.price)
+				this.ngxLoader.stop()
 				this.changeDetector.detectChanges()
 			})
 		}
@@ -46,9 +50,12 @@ export class ProductFormComponent implements OnInit {
 			base64Picture: this.pictureBase64,
 		} as Product
 
+		this.ngxLoader.start()
+
 		if (this.isUpdate) {
 		} else {
 			this.productService.add(product).subscribe((res) => {
+				this.ngxLoader.stop()
 				this.router.navigate(['products'])
 			})
 		}

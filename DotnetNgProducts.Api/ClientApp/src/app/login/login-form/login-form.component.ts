@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core'
 import { FormGroup, FormControl, Validators } from '@angular/forms'
 import { Router } from '@angular/router'
+import { NgxUiLoaderService } from 'ngx-ui-loader'
 import { LocalStorageService } from 'src/app/services/local-storage.service'
 import { LoginService } from '../services/login.service'
 
@@ -18,7 +19,8 @@ export class LoginFormComponent implements OnInit {
 		private loginService: LoginService,
 		private router: Router,
 		private localStorageService: LocalStorageService,
-		private changeDetector: ChangeDetectorRef
+		private changeDetector: ChangeDetectorRef,
+		private ngxLoader: NgxUiLoaderService
 	) {}
 
 	ngOnInit(): void {
@@ -31,6 +33,8 @@ export class LoginFormComponent implements OnInit {
 	onSubmit(): void {
 		this.loginErrorMessage = null
 
+		this.ngxLoader.start()
+
 		this.loginService.login(this.username.value, this.password.value).subscribe((res) => {
 			if (res.success) {
 				this.localStorageService.addAuth('1234')
@@ -39,6 +43,7 @@ export class LoginFormComponent implements OnInit {
 				this.loginErrorMessage = res.error
 				this.changeDetector.detectChanges()
 			}
+			this.ngxLoader.stop()
 		})
 	}
 

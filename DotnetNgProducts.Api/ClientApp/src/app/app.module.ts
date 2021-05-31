@@ -9,6 +9,7 @@ import { NavbarComponent } from './navbar/navbar.component'
 import { LoginModule } from './login/login.module'
 import { ProductsModule } from './products/products.module'
 import { AuthGuard } from './guards/auth.guard'
+import { NgxUiLoaderModule } from 'ngx-ui-loader'
 
 @NgModule({
 	declarations: [AppComponent, NavbarComponent],
@@ -19,6 +20,7 @@ import { AuthGuard } from './guards/auth.guard'
 		FormsModule,
 		LoginModule,
 		ProductsModule,
+		NgxUiLoaderModule,
 	],
 	providers: [AuthGuard],
 	bootstrap: [AppComponent],
