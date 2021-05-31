@@ -10,6 +10,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.OpenApi.Models;
 
 namespace DotnetNgProducts.Api
 {
@@ -40,6 +41,11 @@ namespace DotnetNgProducts.Api
 
             services.AddMediatR(typeof(GetAllProductsRequest).Assembly);
 
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "DotnetNgProducts", Version = "v1" });
+            });
+
             services.AddControllersWithViews();
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
@@ -53,6 +59,15 @@ namespace DotnetNgProducts.Api
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            //Ativa o Swagger
+            app.UseSwagger();
+
+            // Ativa o Swagger UI
+            app.UseSwaggerUI(opt =>
+            {
+                opt.SwaggerEndpoint("/swagger/v1/swagger.json", "DotnetNgProducts API");
+            });
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
