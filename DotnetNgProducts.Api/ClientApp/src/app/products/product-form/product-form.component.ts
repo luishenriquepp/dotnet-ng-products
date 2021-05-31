@@ -53,10 +53,12 @@ export class ProductFormComponent implements OnInit {
 		this.ngxLoader.start()
 
 		if (this.isUpdate) {
+			this.productService.update(this.currentId, product).subscribe((res) => {
+				this.stopSpinnerAndGoToProducts()
+			})
 		} else {
 			this.productService.add(product).subscribe((res) => {
-				this.ngxLoader.stop()
-				this.router.navigate(['products'])
+				this.stopSpinnerAndGoToProducts()
 			})
 		}
 	}
@@ -83,6 +85,11 @@ export class ProductFormComponent implements OnInit {
 		var binaryString = event.target.result
 		this.pictureBase64 = btoa(binaryString)
 		this.changeDetector.detectChanges()
+	}
+
+	stopSpinnerAndGoToProducts(): void {
+		this.ngxLoader.stop()
+		this.router.navigate(['products'])
 	}
 
 	get name() {
