@@ -21,5 +21,8 @@
 			placeholder="Password"
 		/>
 	</div>
+	<div *ngIf="loginErrorMessage" class="alert alert-danger" role="alert">
+		{{ loginErrorMessage }}
+	</div>
 	<button [disabled]="form.invalid" type="submit" class="btn btn-primary">Sign in</button>
 </form>
