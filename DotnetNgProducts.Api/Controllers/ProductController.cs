@@ -25,7 +25,7 @@ namespace DotnetNgProducts.Api.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Add(Product product)
+        public async Task<IActionResult> Add([FromBody] Product product)
         {
             return Ok(await _mediator.Send(new SaveProductRequest(product)));
         }
