@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace DotnetNgProducts.Business.Operations
 {
-    public sealed class SaveProductRequestHandler : IRequestHandler<SaveProductRequest, SaveProductResponse>
+    public sealed class SaveProductHandler : IRequestHandler<SaveProductRequest, SaveProductResponse>
     {
         private readonly IProductRepository _productRepository;
 
-        public SaveProductRequestHandler(IProductRepository productRepository)
+        public SaveProductHandler(IProductRepository productRepository)
         {
             _productRepository = productRepository;
         }

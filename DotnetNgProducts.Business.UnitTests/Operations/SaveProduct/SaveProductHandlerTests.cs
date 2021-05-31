@@ -10,14 +10,14 @@ using System.Threading.Tasks;
 namespace DotnetNgProducts.Business.Operations
 {
     [TestClass]
-    public class SaveProductRequestHandlerTests
+    public class SaveProductHandlerTests
     {
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException), "System.ArgumentNullException: Value cannot be null. (Parameter 'request')")]
         public async Task HandlingSaveProductShouldThrowArgumentNullException()
         {
             // Arrange
-            var handler = new SaveProductRequestHandler(default);
+            var handler = new SaveProductHandler(default);
 
             // Act
             await handler.Handle(default, CancellationToken.None);
@@ -33,7 +33,7 @@ namespace DotnetNgProducts.Business.Operations
                 .AddAsync(product)
                 .Returns(product);
 
-            var handler = new SaveProductRequestHandler(repository);
+            var handler = new SaveProductHandler(repository);
 
             // Act
             var response = await handler.Handle(new SaveProductRequest(product), CancellationToken.None);
