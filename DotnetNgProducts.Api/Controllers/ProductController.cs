@@ -41,5 +41,11 @@ namespace DotnetNgProducts.Api.Controllers
         {
             return Ok(await _mediator.Send(new DeleteProductRequest(id)));
         }
+
+        [HttpPut("{Id}")]
+        public async Task<IActionResult> Update(int id, [FromBody] Product product)
+        {
+            return Ok(await _mediator.Send(new UpdateProductRequest(id, product)));
+        }
     }
 }

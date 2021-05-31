@@ -41,5 +41,16 @@ namespace DotnetNgProducts.Data
             
             await _dbContext.SaveChangesAsync();
         }
+
+        async Task<Product> IProductRepository.UpdateAsync(int id, Product product)
+        {
+            product.Id = id;
+
+            var updated = _dbContext.Update(product);
+
+            await _dbContext.SaveChangesAsync();
+
+            return updated.Entity;
+        }
     }
 }

@@ -25,5 +25,10 @@ namespace DotnetNgProducts.Data
         /// Delete a specific product by it's unique id
         /// </summary>
         Task DeleteAsync(int id);
+
+        /// <summary>
+        /// Update the properties of a product
+        /// </summary>
+        Task<Product> UpdateAsync(int id, Product product);
     }
 }
