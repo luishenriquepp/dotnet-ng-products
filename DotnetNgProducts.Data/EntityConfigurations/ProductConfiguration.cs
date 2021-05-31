@@ -22,6 +22,10 @@ namespace DotnetNgProducts.Data.EntityConfigurations
                 .Property(p => p.Price)
                 .IsRequired()
                 .HasColumnType("money");
+
+            builder
+                .Property(p => p.Base64Picture)
+                .IsRequired();
         }
     }
 }
