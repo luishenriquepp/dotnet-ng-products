@@ -33,11 +33,9 @@ namespace DotnetNgProducts.Api
                     config.RegisterValidatorsFromAssemblyContaining<ProductValidator>();
                 });
 
-            services.AddDbContext<ApplicationDbContext>(
-                options =>
-                    options.UseSqlServer(
-                        Configuration.GetConnectionString("DefaultConnection"),
-                        x => x.MigrationsAssembly("DotnetNgProducts.Migrations")));
+            services.AddDbContext(Configuration);
+
+            var connection = Configuration.GetConnectionString("");
 
             services.AddMediatR(typeof(GetAllProductsRequest).Assembly);
 
