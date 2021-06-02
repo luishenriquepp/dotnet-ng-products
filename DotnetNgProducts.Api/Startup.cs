@@ -1,3 +1,4 @@
+using DotnetNgProducts.Api.DependencyInjection;
 using DotnetNgProducts.Api.Validators;
 using DotnetNgProducts.Business.Queries;
 using DotnetNgProducts.Data;
@@ -10,7 +11,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.OpenApi.Models;
 
 namespace DotnetNgProducts.Api
 {
@@ -41,10 +41,7 @@ namespace DotnetNgProducts.Api
 
             services.AddMediatR(typeof(GetAllProductsRequest).Assembly);
 
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "DotnetNgProducts", Version = "v1" });
-            });
+            services.AddSwagger();
 
             services.AddControllersWithViews();
             // In production, the Angular files will be served from this directory
